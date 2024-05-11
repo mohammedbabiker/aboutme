@@ -981,7 +981,9 @@ body.dark-theme {
   font-size: 1.1rem;
   color: var(--title-color);
   z-index: var(--z-tooltip);
-  transition: bottom 0.3s, transform 0.3s;
+  transition:
+    bottom 0.3s,
+    transform 0.3s;
 }
 
 .scrollup:hover {

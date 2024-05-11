@@ -90,7 +90,7 @@ const sendEmail = (e) => {
         "service_jry8rp8",
         "template_dsfngzq",
         "#contact-form",
-        "Pr8W8NGG9EdB1wINQ"
+        "Pr8W8NGG9EdB1wINQ",
       )
       .then(
         () => {
@@ -105,7 +105,7 @@ const sendEmail = (e) => {
         },
         (error) => {
           alert("OOPS! SOMETHING HAS FAILED...", error);
-        }
+        },
       );
 
     // To clear the input field
@@ -127,7 +127,7 @@ const scrollActive = () => {
       sectionTop = current.offsetTop - 58,
       sectionId = current.getAttribute("id"),
       sectionsClass = document.querySelector(
-        ".nav__menu a[href*=" + sectionId + "]"
+        ".nav__menu a[href*=" + sectionId + "]",
       );
 
     if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
@@ -170,10 +170,10 @@ const getCurrentIcon = () =>
 if (selectedTheme) {
   // If the validation is fulfilled, we ask what the issue was to know if we activated or deactivated the dark
   document.body.classList[selectedTheme === "dark" ? "add" : "remove"](
-    darkTheme
+    darkTheme,
   );
   themeButton.classList[selectedIcon === "ri-moon-line" ? "add" : "remove"](
-    iconTheme
+    iconTheme,
   );
 }
 
@@ -208,7 +208,7 @@ const sr = ScrollReveal({
 });
 
 sr.reveal(
-  `.home__data, .projects__container, .testimonial__container, .footer__container`
+  `.home__data, .projects__container, .testimonial__container, .footer__container`,
 );
 sr.reveal(`.home__info div`, { delay: 600, origin: "bottom", interval: 100 });
 sr.reveal(`.skills__content:nth-child(1), .contact__content:nth-child(1)`, {
