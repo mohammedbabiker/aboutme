@@ -1,5 +1,5 @@
 /*=============== GOOGLE FONTS ===============*/
-@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Roboto:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 /*=============== VARIABLES CSS ===============*/
 :root {
@@ -25,7 +25,7 @@
   /*========== Font and typography ==========*/
   /*.5rem = 8px | 1rem = 16px ...*/
   --body-font: "Roboto", sans-serif;
-  --title-font: "Lora", serif;
+  --title-font: "Poppins", serif;
   --biggest-font-size: 1.5rem;
   --h1-font-size: 1.5rem;
   --h2-font-size: 1.25rem;
@@ -48,10 +48,10 @@
 /* Responsive typography */
 @media screen and (min-width: 1024px) {
   :root {
-    --biggest-font-size: 3rem;
-    --h1-font-size: 2.25rem;
-    --h2-font-size: 1.5rem;
-    --h3-font-size: 1.25rem;
+    --biggest-font-size: 2.5rem;
+    --h1-font-size: 2rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1rem;
     --normal-font-size: 1rem;
     --small-font-size: 0.875rem;
     --smaller-font-size: 0.813rem;
@@ -981,9 +981,7 @@ body.dark-theme {
   font-size: 1.1rem;
   color: var(--title-color);
   z-index: var(--z-tooltip);
-  transition:
-    bottom 0.3s,
-    transform 0.3s;
+  transition: bottom 0.3s, transform 0.3s;
 }
 
 .scrollup:hover {
