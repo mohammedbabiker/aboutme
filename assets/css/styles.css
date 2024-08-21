@@ -67,6 +67,11 @@
   /* scroll-behavior: smooth; */
 }
 
+::selection {
+  /* background-color: #8bbce6; */
+  color: #dbe9f6;
+}
+
 html {
   scroll-behavior: smooth;
 }
