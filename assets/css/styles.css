@@ -41,6 +41,10 @@
   --z-normal: 1;
   --z-tooltip: 10;
   --z-fixed: 100;
+
+  /*========== terminal background ==========*/
+  --bg-terminal: #000000;
+  --terminal-green: #4af626;
 }
 
 /* Responsive typography */
@@ -309,11 +313,12 @@ body.dark-theme {
 /*=============== HOME ===============*/
 .home__container {
   row-gap: 4rem;
-  padding-top: 2rem;
+  /* padding-top: 2rem; */
 }
 
 .home__data {
   row-gap: 1.5rem;
+  margin-top: 14rem;
 }
 
 .home__title {
@@ -324,6 +329,8 @@ body.dark-theme {
 }
 
 .home__blob {
+  /* margin-top: 14rem; */
+  /* consider upove */
   position: relative;
   width: 200px;
   height: 290px;
@@ -1432,4 +1439,85 @@ body.dark-theme {
   .footer__copy {
     margin-top: 5rem;
   }
+}
+
+/* Terminal Styles */
+.hero__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 2rem;
+}
+
+.terminal {
+  background-color: var(--bg-terminal);
+  border: 1px solid #333;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 900px;
+  overflow: hidden;
+  margin-top: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.terminal__section {
+  padding-top: 10rem;
+  padding-bottom: 25rem;
+}
+
+.terminal__header {
+  background-color: #333;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.terminal__button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.terminal__button--close {
+  background-color: #ff5f56;
+}
+
+.terminal__button--minimize {
+  background-color: #ffbd2e;
+}
+
+.terminal__button--maximize {
+  background-color: #27c93f;
+}
+
+.terminal__title {
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+.terminal__body {
+  padding: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+}
+
+.terminal__prompt {
+  color: var(--terminal-green);
+  margin-right: 0.5rem;
+}
+
+.terminal__text {
+  color: #fff;
+}
+
+.terminal__cursor {
+  display: inline-block;
+  width: 8px;
+  background-color: #fff;
+  animation: blink 1s step-end infinite;
 }

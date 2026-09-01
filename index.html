@@ -1,207 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!--=============== FAVICON ===============-->
-    <link
-      rel="shortcut icon"
-      href="./assets/img/favicon.png"
-      type="image/x-icon"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!--=============== REMISSIONS ===============-->
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
+  <!--=============== FAVICON ===============-->
+  <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon" />
 
-    <!--=============== SWIPER CSS ===============-->
-    <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css" />
+  <!--=============== REMISSIONS ===============-->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
 
-    <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="./assets/css/styles.css" />
+  <!--=============== SWIPER CSS ===============-->
+  <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css" />
 
-    <title>portfolio website Mohammed - Babiker</title>
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-PZB5976E9V"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
+  <!--=============== CSS ===============-->
+  <link rel="stylesheet" href="./assets/css/styles.css" />
 
-      gtag("config", "G-PZB5976E9V");
-    </script>
-  </head>
+  <!--=============== GOOGLE FONTS ===============-->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-  <body>
-    <!--==================== HEADER ====================-->
-    <header class="header" id="header">
-      <nav class="nav container">
-        <a href="#" class="nav__logo"> Mohammed </a>
-        <div class="nav__menu" id="nav-menu">
-          <ul class="nav__list grid">
-            <li class="nav__item">
-              <a href="#home" class="nav__link active-link">
-                <i class="ri-home-5-line"></i> Home
-              </a>
-            </li>
-            <li class="nav__item">
-              <a href="#skills" class="nav__link">
-                <i class="ri-trophy-line"></i> Skills
-              </a>
-            </li>
-            <!-- <li class="nav__item"> -->
-            <!--   <a href="#qualification" class="nav__link"> -->
-            <!--     <i class="ri-book-open-line"></i> Qualification -->
-            <!--   </a> -->
-            <!-- </li> -->
-            <!-- <li class="nav__item"> -->
-            <!--   <a href="#services" class="nav__link"> -->
-            <!--     <i class="ri-briefcase-line"></i> Services -->
-            <!--   </a> -->
-            <!-- </li> -->
-            <li class="nav__item">
-              <a href="#projects" class="nav__link">
-                <i class="ri-image-line"></i> Projects
-              </a>
-            </li>
-            <li class="nav__item">
-              <a href="#contact" class="nav__link">
-                <i class="ri-chat-3-line"></i> Contact
-              </a>
-            </li>
+  <!-- =========== SEO & Open Graph Tags -->
+  <meta name="description"
+    content="Full Stack & DevOps Software Engineer Portfolio. Specializing in TypeScript, Docker, IaC, ansible and Secure Web Solutions.">
+  <meta property="og:title" content="Mohammed babiker | Full Stack Engineer">
+  <meta property="og:description" content="Building Secure, Scalable, and Automated Web Solutions.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="./assets/img/og-image.jpg"> <!-- fill in with my image -->
+  <title>Mohammed Babiker | Portfolio</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PZB5976E9V"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-PZB5976E9V");
+  </script>
+  <!-- defer loading for better performance -->
+  <script type="module" src="./assets/js/main.js" defer></script>
+</head>
+
+<body>
+  <!--==================== HEADER ====================-->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <div class="nav__logo">&lt;Mohammed babiker/&gt;</div>
+      <!-- <a href="#" class="nav__logo"> Mohammed </a> -->
+      <div class="nav__menu" id="nav-menu">
+        <ul class="nav__list grid">
+          <li class="nav__item">
+            <a href="#home" class="nav__link active-link">
+              <i class="ri-home-5-line"></i> Home
+            </a>
+          </li>
+          <li class="nav__item">
+            <a href="#skills" class="nav__link">
+              <i class="ri-trophy-line"></i> Skills
+            </a>
+          </li>
+          <!-- <li class="nav__item"> -->
+          <!--   <a href="#qualification" class="nav__link"> -->
+          <!--     <i class="ri-book-open-line"></i> Qualification -->
+          <!--   </a> -->
+          <!-- </li> -->
+          <!-- <li class="nav__item"> -->
+          <!--   <a href="#services" class="nav__link"> -->
+          <!--     <i class="ri-briefcase-line"></i> Services -->
+          <!--   </a> -->
+          <!-- </li> -->
+          <li class="nav__item">
+            <a href="#projects" class="nav__link">
+              <i class="ri-image-line"></i> Projects
+            </a>
+          </li>
+          <li class="nav__item">
+            <a href="#contact" class="nav__link">
+              <i class="ri-chat-3-line"></i> Contact
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav__close" id="nav-close">
+          <i class="ri-close-fill"></i>
+        </div>
+      </div>
+      <div class="nav__buttons">
+        <!-- theme change button  -->
+        <i class="ri-moon-line change__theme" id="theme-button"></i>
+
+        <!-- toggle button  -->
+        <div class="nav__toggle" id="nav-toggle">
+          <i class="ri-menu-4-fill"></i>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!--==================== MAIN ====================-->
+  <main class="main">
+    <!--==================== HOME ====================-->
+    <section class="home section" id="home">
+      <!-- Hero Section with Terminal Effect -->
+      <div class="terminal__section container section__border"> <!-- Add a class for styling if needed -->
+        <div class="hero__content">
+          <h1 class="hero__title">Building Secure & Automated Web Solutions</h1>
+          <p class="hero__subtitle">Bridging the gap between clean TypeScript architecture and robust
+            containerized infrastructure.</p>
+
+          <!-- Terminal UI -->
+          <div class="terminal" aria-hidden="true">
+            <div class="terminal__header">
+              <span class="terminal__button terminal__button--close"></span>
+              <span class="terminal__button terminal__button--minimize"></span>
+              <span class="terminal__button terminal__button--maximize"></span>
+              <span class="terminal__title">bash - ~</span>
+            </div>
+            <div class="terminal__body">
+              <span class="terminal__prompt">mohammedbabiker@macbook:~$</span>
+              <span class="terminal__text" id="typewriter"></span><span class="terminal__cursor">_</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="home__container container grid section__border">
+        <div class="home__data grid">
+
+          <nav class="home__blob grid">
+            <div class="home__perfil">
+              <img src="./assets/img/perfil2.png" alt="home perfil" />
+            </div>
+
+            <img src="./assets/img/shape-wawes.svg" alt="" class="home__shape-wawes" />
+            <img src="./assets/img/shape-circle.svg" alt="" class="home__shape-circle" />
+          </nav>
+
+          <ul class="home__social">
+            <a href="https://www.linkedin.com/in/mohammed-babiker-49096120b/" target="_blank" class="home__social-link">
+              <i class="ri-linkedin-box-line"></i>
+            </a>
+
+            <a href="https://github.com/mohammedbabiker" target="_blank" class="home__social-link">
+              <i class="ri-github-line"></i>
+            </a>
+
+            <a href="https://www.instagram.com/mbabai20" target="_blank" class="home__social-link">
+              <i class="ri-instagram-line"></i>
+            </a>
           </ul>
+        </div>
 
-          <div class="nav__close" id="nav-close">
-            <i class="ri-close-fill"></i>
+        <!--==================== HOME info 1 ====================-->
+        <div class="home__info">
+          <div>
+            <h3 class="home__info-title">BIOGRAPHY</h3>
+
+            <p class="home__info-description">
+              Hi, I'm Mohammed, Frontend Developer. Passionate about designing
+              beautiful web interfaces. Based in Sudan.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="home__info-title">CONTACT</h3>
+
+            <p class="home__info-description">
+              Sudan, Dmazeen <br />
+              mohammed.babiker201@email.com <br />
+              +249 90 854 3850 <br />
+            </p>
+          </div>
+
+          <div>
+            <h3 class="home__info-title">SERVICES</h3>
+
+            <p class="home__info-description">
+              Website Design <br />
+              UI/UX Design <br />
+              Animation <br />
+            </p>
           </div>
         </div>
-        <div class="nav__buttons">
-          <!-- theme change button  -->
-          <i class="ri-moon-line change__theme" id="theme-button"></i>
 
-          <!-- toggle button  -->
-          <div class="nav__toggle" id="nav-toggle">
-            <i class="ri-menu-4-fill"></i>
-          </div>
-        </div>
-      </nav>
-    </header>
+        <!--==================== HOME info 2 ====================-->
+        <div class="home__info">
+          <div>
+            <h3 class="home__info-title">YEARS OF EXPERIENCE</h3>
 
-    <!--==================== MAIN ====================-->
-    <main class="main">
-      <!--==================== HOME ====================-->
-      <section class="home section" id="home">
-        <div class="home__container container grid section__border">
-          <div class="home__data grid">
-            <h1 class="home__title">
-              Hi, I’m Mohammed <br />
-              Frontend Developer <br />
-              Based In Sudan <br />
-            </h1>
-
-            <nav class="home__blob grid">
-              <div class="home__perfil">
-                <img src="./assets/img/perfil2.png" alt="home perfil" />
-              </div>
-
-              <img
-                src="./assets/img/shape-wawes.svg"
-                alt=""
-                class="home__shape-wawes"
-              />
-              <img
-                src="./assets/img/shape-circle.svg"
-                alt=""
-                class="home__shape-circle"
-              />
-            </nav>
-
-            <ul class="home__social">
-              <a
-                href="https://www.linkedin.com/in/mohammed-babiker-49096120b/"
-                target="_blank"
-                class="home__social-link"
-              >
-                <i class="ri-linkedin-box-line"></i>
-              </a>
-
-              <a
-                href="https://github.com/mohammedbabiker"
-                target="_blank"
-                class="home__social-link"
-              >
-                <i class="ri-github-line"></i>
-              </a>
-
-              <a
-                href="https://www.instagram.com/mbabai20"
-                target="_blank"
-                class="home__social-link"
-              >
-                <i class="ri-instagram-line"></i>
-              </a>
-            </ul>
+            <p class="home__info-number">01+</p>
           </div>
 
-          <!--==================== HOME info 1 ====================-->
-          <div class="home__info">
-            <div>
-              <h3 class="home__info-title">BIOGRAPHY</h3>
+          <div>
+            <h3 class="home__info-title">COMPLETED PROJECTS</h3>
 
-              <p class="home__info-description">
-                Hi, I'm Mohammed, Frontend Developer. Passionate about designing
-                beautiful web interfaces. Based in Sudan.
-              </p>
-            </div>
-
-            <div>
-              <h3 class="home__info-title">CONTACT</h3>
-
-              <p class="home__info-description">
-                Sudan, Dmazeen <br />
-                mohammed.babiker201@email.com <br />
-                +249 90 854 3850 <br />
-              </p>
-            </div>
-
-            <div>
-              <h3 class="home__info-title">SERVICES</h3>
-
-              <p class="home__info-description">
-                Website Design <br />
-                UI/UX Design <br />
-                Animation <br />
-              </p>
-            </div>
+            <p class="home__info-number">04+</p>
           </div>
 
-          <!--==================== HOME info 2 ====================-->
-          <div class="home__info">
-            <div>
-              <h3 class="home__info-title">YEARS OF EXPERIENCE</h3>
+          <div>
+            <h3 class="home__info-title">COMPANIES WORKED</h3>
 
-              <p class="home__info-number">01+</p>
-            </div>
-
-            <div>
-              <h3 class="home__info-title">COMPLETED PROJECTS</h3>
-
-              <p class="home__info-number">04+</p>
-            </div>
-
-            <div>
-              <h3 class="home__info-title">COMPANIES WORKED</h3>
-
-              <p class="home__info-number">02+</p>
-            </div>
+            <p class="home__info-number">02+</p>
           </div>
         </div>
       </section>

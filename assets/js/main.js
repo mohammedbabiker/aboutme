@@ -218,3 +218,67 @@ sr.reveal(`.skills__content:nth-child(2), .contact__content:nth-child(2)`, {
   origin: "right",
 });
 sr.reveal(`.qualification__content, .services__card`, { interval: 100 });
+
+// Terminal Typewriter Effect
+
+const commands = [
+  "whoami",
+  "Loading profile...",
+  "cat skills.txt",
+  "Hi, I’m Mohammed, a Full-Stack Developer based in Sudan.",
+  "./deploy_project.sh",
+  "Success: Services are up and running!"
+];
+class TerminalTypewriter {
+  textElement;
+  currentCommandIndex = 0;
+  currentCharIndex = 0;
+  isTyping = true;
+  typingSpeed = 50;
+  pauseBetweenCommands = 1500;
+  constructor(elementId) {
+    const el = document.getElementById(elementId);
+    if (!el) {
+      throw new Error(`Element with id ${elementId} not found.`);
+    }
+    this.textElement = el;
+  }
+  start() {
+    this.type();
+  }
+  type() {
+    const currentCommand = commands[this.currentCommandIndex];
+    if (this.isTyping) {
+      // Add next character
+      this.textElement.textContent = currentCommand.substring(0, this.currentCharIndex + 1);
+      this.currentCharIndex++;
+      if (this.currentCharIndex === currentCommand.length) {
+        this.isTyping = false;
+        setTimeout(() => this.erase(), this.pauseBetweenCommands);
+      }
+      else {
+        setTimeout(() => this.type(), this.typingSpeed);
+      }
+    }
+  }
+  erase() {
+    if (!this.isTyping) {
+      // Clear the terminal line for the next command
+      this.textElement.textContent = "";
+      this.currentCharIndex = 0;
+      this.isTyping = true;
+      this.currentCommandIndex = (this.currentCommandIndex + 1) % commands.length;
+      setTimeout(() => this.type(), this.typingSpeed);
+    }
+  }
+}
+// Initialize when the DOM is fully loaded
+document.addEventListener("DOMContentLoaded", () => {
+  try {
+    const terminal = new TerminalTypewriter("typewriter");
+    terminal.start();
+  }
+  catch (error) {
+    console.error("Failed to initialize terminal effect:", error);
+  }
+});
