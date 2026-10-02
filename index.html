@@ -4,765 +4,439 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#0a0c10" />
 
-  <!--=============== FAVICON ===============-->
-  <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon" />
+  <title>Mohammed Babiker — Full-Stack & DevOps Engineer</title>
+  <meta name="description"
+    content="Full-Stack & DevOps Software Engineer. TypeScript, Docker, IaC, Ansible, secure web solutions." />
+  <link rel="canonical" href="https://mohammedbabiker.me/" />
 
-  <!--=============== REMISSIONS ===============-->
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Mohammed Babiker — Full-Stack & DevOps Engineer" />
+  <meta property="og:description" content="Building secure, scalable, automated web solutions." />
+  <meta property="og:image" content="./assets/img/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
 
-  <!--=============== SWIPER CSS ===============-->
-  <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css" />
+  <link rel="icon" href="./assets/img/favicon.png" />
+  <link rel="apple-touch-icon" href="./assets/img/favicon.png" />
 
-  <!--=============== CSS ===============-->
-  <link rel="stylesheet" href="./assets/css/styles.css" />
-
-  <!--=============== GOOGLE FONTS ===============-->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
 
-  <!-- =========== SEO & Open Graph Tags -->
-  <meta name="description"
-    content="Full Stack & DevOps Software Engineer Portfolio. Specializing in TypeScript, Docker, IaC, ansible and Secure Web Solutions.">
-  <meta property="og:title" content="Mohammed babiker | Full Stack Engineer">
-  <meta property="og:description" content="Building Secure, Scalable, and Automated Web Solutions.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="./assets/img/og-image.jpg"> <!-- fill in with my image -->
-  <title>Mohammed Babiker | Portfolio</title>
-  <!-- Google tag (gtag.js) -->
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+
+  <!-- Pre-paint theme boot (prevents white flash) -->
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = stored || (prefersDark ? 'dark' : 'light');
+        document.documentElement.classList.toggle('dark-theme', theme === 'dark');
+      } catch (e) { }
+    })();
+  </script>
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PZB5976E9V"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
-
-    gtag("config", "G-PZB5976E9V");
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-PZB5976E9V');
   </script>
-  <!-- defer loading for better performance -->
-  <script type="module" src="./assets/js/main.js" defer></script>
 </head>
 
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
   <!--==================== HEADER ====================-->
   <header class="header" id="header">
-    <nav class="nav container">
-      <div class="nav__logo">&lt;Mohammed babiker/&gt;</div>
-      <!-- <a href="#" class="nav__logo"> Mohammed </a> -->
+    <nav class="nav container" aria-label="Primary">
+      <a href="#home" class="nav__logo" aria-label="Home">
+        <span class="nav__logo-bracket">&lt;</span>mb<span class="nav__logo-bracket">/&gt;</span>
+      </a>
+
       <div class="nav__menu" id="nav-menu">
-        <ul class="nav__list grid">
-          <li class="nav__item">
-            <a href="#home" class="nav__link active-link">
-              <i class="ri-home-5-line"></i> Home
-            </a>
-          </li>
-          <li class="nav__item">
-            <a href="#skills" class="nav__link">
-              <i class="ri-trophy-line"></i> Skills
-            </a>
-          </li>
-          <!-- <li class="nav__item"> -->
-          <!--   <a href="#qualification" class="nav__link"> -->
-          <!--     <i class="ri-book-open-line"></i> Qualification -->
-          <!--   </a> -->
-          <!-- </li> -->
-          <!-- <li class="nav__item"> -->
-          <!--   <a href="#services" class="nav__link"> -->
-          <!--     <i class="ri-briefcase-line"></i> Services -->
-          <!--   </a> -->
-          <!-- </li> -->
-          <li class="nav__item">
-            <a href="#projects" class="nav__link">
-              <i class="ri-image-line"></i> Projects
-            </a>
-          </li>
-          <li class="nav__item">
-            <a href="#contact" class="nav__link">
-              <i class="ri-chat-3-line"></i> Contact
-            </a>
-          </li>
+        <ul class="nav__list">
+          <li><a href="#home" class="nav__link active-link">Home</a></li>
+          <li><a href="#skills" class="nav__link">Skills</a></li>
+          <li><a href="#projects" class="nav__link">Projects</a></li>
+          <li><a href="#contact" class="nav__link">Contact</a></li>
         </ul>
-
-        <div class="nav__close" id="nav-close">
-          <i class="ri-close-fill"></i>
-        </div>
       </div>
-      <div class="nav__buttons">
-        <!-- theme change button  -->
-        <i class="ri-moon-line change__theme" id="theme-button"></i>
 
-        <!-- toggle button  -->
-        <div class="nav__toggle" id="nav-toggle">
-          <i class="ri-menu-4-fill"></i>
-        </div>
+      <div class="nav__actions">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle theme">
+          <svg class="icon icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+          </svg>
+          <svg class="icon icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+
+        <button class="nav__toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false"
+          aria-controls="nav-menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            aria-hidden="true">
+            <path d="M3 6h18M3 12h18M3 18h18" />
+          </svg>
+        </button>
       </div>
     </nav>
   </header>
 
   <!--==================== MAIN ====================-->
-  <main class="main">
-    <!--==================== HOME ====================-->
-    <section class="home section" id="home">
-      <!-- Hero Section with Terminal Effect -->
-      <div class="terminal__section container section__border"> <!-- Add a class for styling if needed -->
-        <div class="hero__content">
-          <h1 class="hero__title">Building Secure & Automated Web Solutions</h1>
-          <p class="hero__subtitle">Bridging the gap between clean TypeScript architecture and robust
-            containerized infrastructure.</p>
+  <main id="main">
 
-          <!-- Terminal UI -->
-          <div class="terminal" aria-hidden="true">
-            <div class="terminal__header">
-              <span class="terminal__button terminal__button--close"></span>
-              <span class="terminal__button terminal__button--minimize"></span>
-              <span class="terminal__button terminal__button--maximize"></span>
-              <span class="terminal__title">bash - ~</span>
-            </div>
-            <div class="terminal__body">
-              <span class="terminal__prompt">mohammedbabiker@macbook:~$</span>
-              <span class="terminal__text" id="typewriter"></span><span class="terminal__cursor">_</span>
-            </div>
+    <!--==================== HERO ====================-->
+    <section class="hero section" id="home">
+      <div class="container hero__inner">
+        <div class="hero__intro">
+          <p class="hero__eyebrow">
+            <span class="status-dot" aria-hidden="true"></span>
+            Available for new projects
+          </p>
+
+          <h1 class="hero__title">
+            Building <span class="gradient-text">secure, automated</span> web solutions.
+          </h1>
+
+          <p class="hero__subtitle">
+            Full-stack engineering meets DevOps discipline — clean TypeScript architecture,
+            containerized infrastructure, and CI/CD that just works.
+          </p>
+
+          <div class="hero__actions">
+            <a href="#projects" class="btn btn--primary">
+              View projects
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                aria-hidden="true">
+                <path d="M5 12h14M13 5l7 7-7 7" />
+              </svg>
+            </a>
+            <a href="#contact" class="btn btn--ghost">Get in touch</a>
           </div>
-        </div>
-      </div>
-      <div class="home__container container grid section__border">
-        <div class="home__data grid">
 
-          <nav class="home__blob grid">
-            <div class="home__perfil">
-              <img src="./assets/img/perfil2.png" alt="home perfil" />
-            </div>
-
-            <img src="./assets/img/shape-wawes.svg" alt="" class="home__shape-wawes" />
-            <img src="./assets/img/shape-circle.svg" alt="" class="home__shape-circle" />
-          </nav>
-
-          <ul class="home__social">
-            <a href="https://www.linkedin.com/in/mohammed-babiker-49096120b/" target="_blank" class="home__social-link">
-              <i class="ri-linkedin-box-line"></i>
-            </a>
-
-            <a href="https://github.com/mohammedbabiker" target="_blank" class="home__social-link">
-              <i class="ri-github-line"></i>
-            </a>
-
-            <a href="https://www.instagram.com/mbabai20" target="_blank" class="home__social-link">
-              <i class="ri-instagram-line"></i>
-            </a>
+          <ul class="hero__social">
+            <li>
+              <a href="https://github.com/mohammedbabiker" target="_blank" rel="noopener noreferrer"
+                aria-label="GitHub">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M12 .5C5.4.5 0 5.9 0 12.5c0 5.3 3.4 9.8 8.2 11.3.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.8.1-.8.1-.8 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.4 4 18.4 4.3 18.4 4.3c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6C20.6 22.3 24 17.8 24 12.5 24 5.9 18.6.5 12 .5z" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/mohammedbabikerbabai/" target="_blank" rel="noopener noreferrer"
+                aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 1 1 8.25 6.5 1.75 1.75 0 0 1 6.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0 0 13 14.19a.66.66 0 0 0 0 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 0 1 2.7-1.4c1.55 0 3.36.86 3.36 3.66z" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/mbabai20" target="_blank" rel="noopener noreferrer"
+                aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="2" y="2" width="20" height="20" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                </svg>
+              </a>
+            </li>
           </ul>
         </div>
 
-        <!--==================== HOME info 1 ====================-->
-        <div class="home__info">
-          <div>
-            <h3 class="home__info-title">BIOGRAPHY</h3>
-
-            <p class="home__info-description">
-              Hi, I'm Mohammed, Frontend Developer. Passionate about designing
-              beautiful web interfaces. Based in Sudan.
-            </p>
+        <!-- Interactive terminal -->
+        <div class="terminal" id="terminal" role="region" aria-label="Interactive terminal">
+          <div class="terminal__chrome">
+            <span class="terminal__dot terminal__dot--red" aria-hidden="true"></span>
+            <span class="terminal__dot terminal__dot--yellow" aria-hidden="true"></span>
+            <span class="terminal__dot terminal__dot--green" aria-hidden="true"></span>
+            <span class="terminal__title">mohammedbabiker@portfolio — zsh</span>
           </div>
 
-          <div>
-            <h3 class="home__info-title">CONTACT</h3>
+          <div class="terminal__body">
+            <div class="terminal__output" id="terminal-output" aria-live="polite"></div>
 
-            <p class="home__info-description">
-              Sudan, Dmazeen <br />
-              mohammed.babiker201@email.com <br />
-              +249 90 854 3850 <br />
-            </p>
-          </div>
-
-          <div>
-            <h3 class="home__info-title">SERVICES</h3>
-
-            <p class="home__info-description">
-              Website Design <br />
-              UI/UX Design <br />
-              Animation <br />
-            </p>
-          </div>
-        </div>
-
-        <!--==================== HOME info 2 ====================-->
-        <div class="home__info">
-          <div>
-            <h3 class="home__info-title">YEARS OF EXPERIENCE</h3>
-
-            <p class="home__info-number">01+</p>
-          </div>
-
-          <div>
-            <h3 class="home__info-title">COMPLETED PROJECTS</h3>
-
-            <p class="home__info-number">04+</p>
-          </div>
-
-          <div>
-            <h3 class="home__info-title">COMPANIES WORKED</h3>
-
-            <p class="home__info-number">02+</p>
-          </div>
-        </div>
-      </section>
-
-      <!--==================== SKILLS ====================-->
-      <section class="skills section" id="skills">
-        <h2 class="section__title">Skills</h2>
-        <span class="section__subtitle">My favorite skills</span>
-        <div class="skills__container container grid section__border">
-          <!--==================== SKILLS 1 ====================-->
-
-          <div class="skills__content">
-            <h3 class="skills__title">
-              <i class="ri-braces-line"></i> Frontend Developer
-            </h3>
-            <div class="skills__info">
-              <div class="skills__data">
-                <div class="skills__blob">
-                  <img src="./assets/img/html-1.svg" alt="skills image" />
-                </div>
-                <h3 class="skills__name">HTML</h3>
-                <span class="skills__subtitle">Intermediate</span>
-              </div>
-
-              <div class="skills__data">
-                <div class="skills__blob">
-                  <img src="./assets/img/css-3.svg" alt="skills image" />
-                </div>
-                <h3 class="skills__name">CSS</h3>
-                <span class="skills__subtitle">Advanced</span>
-              </div>
-
-              <div class="skills__data">
-                <div class="skills__blob">
-                  <img
-                    src="./assets/img/logo-javascript.svg"
-                    alt="skills image"
-                  />
-                </div>
-                <h3 class="skills__name">JavaScript</h3>
-                <span class="skills__subtitle">Intermediate</span>
-              </div>
-
-              <div class="skills__data">
-                <div class="skills__blob">
-                  <img src="./assets/img/react-2.svg" alt="skills image" />
-                </div>
-                <h3 class="skills__name">React</h3>
-                <span class="skills__subtitle">Basic</span>
-              </div>
-
-              <!-- <div class="skills__data">
-                <div class="skills__blob">
-                  <img src="./assets/img/git-icon.svg" alt="skills image" />
-                </div>
-                <h3 class="skills__name">Git</h3>
-                <span class="skills__subtitle">Intermediate</span>
-              </div> -->
-            </div>
-          </div>
-
-          <!--==================== SKILLS  2====================-->
-          <div class="skills__content">
-            <h3 class="skills__title">
-              <i class="ri-pantone-line"></i> Web Designer
-            </h3>
-            <div class="skills__info">
-              <div class="skills__data">
-                <div class="skills__blob">
-                  <img src="./assets/img/figma-1.svg" alt="skills image" />
-                </div>
-                <h3 class="skills__name">Figma</h3>
-                <span class="skills__subtitle">Advanced</span>
-              </div>
-
-              <!-- <div class="skills__data">
-                <div class="skills__blob">
-                  <img src="./assets/img/sketch-2.svg" alt="skills image" />
-                </div>
-                <h3 class="skills__name">Sketch</h3>
-                <span class="skills__subtitle">Basic</span>
-              </div> -->
-
-              <!-- <div class="skills__data">
-                <div class="skills__blob">
-                  <img src="./assets/img/adobe-xd-1.svg" alt="skills image" />
-                </div>
-                <h3 class="skills__name">Adobe XD</h3>
-                <span class="skills__subtitle">Intermediate</span>
-              </div> -->
-
-              <!-- <div class="skills__data">
-                <div class="skills__blob">
-                  <img src="./assets/img/invision.svg" alt="skills image" />
-                </div>
-                <h3 class="skills__name">InvisionApp</h3>
-                <span class="skills__subtitle">Basic</span>
-              </div> -->
-              <div class="skills__data">
-                <div class="skills__blob">
-                  <img src="./assets/img/canva.svg" alt="skills image" />
-                </div>
-                <h3 class="skills__name">Canva</h3>
-                <span class="skills__subtitle">Advanced</span>
-              </div>
-
-              <div class="skills__data">
-                <div class="skills__blob">
-                  <img
-                    src="./assets/img/adobe-photoshop-2.svg"
-                    alt="skills image"
-                  />
-                </div>
-                <h3 class="skills__name">Photoshop</h3>
-                <span class="skills__subtitle">Basic</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!--==================== QUALIFICATION ====================-->
-      <!-- <section class="qualification section" id="qualification"> -->
-      <!--   <h2 class="section__title">Qualification</h2> -->
-      <!--   <span class="section__subtitle">Experience &amp; Education</span> -->
-      <!---->
-      <!--   <div class="qualification__container container grid section__border"> -->
-      <!--     <!--==================== QUALIFICATION 1 ====================-->
-      <!--     <div class="qualification__content"> -->
-      <!--       <h3 class="qualification__title"> -->
-      <!--         <i class="ri-pencil-ruler-2-line"></i> Education -->
-      <!--       </h3> -->
-      <!---->
-      <!--       <div class="qualification__info"> -->
-      <!--         <div> -->
-      <!--           <h3 class="qualification__name">Web Developer</h3> -->
-      <!--           <span class="qualification__country">Courses - Udemy</span> -->
-      <!--           <span class="qualification__year">2020 - Now</span> -->
-      <!--         </div> -->
-      <!---->
-      <!--         <div> -->
-      <!--           <h3 class="qualification__name">UI/UX Design</h3> -->
-      <!--           <span class="qualification__country">Courses - Udemy</span> -->
-      <!--           <span class="qualification__year">2020 - 2023</span> -->
-      <!--         </div> -->
-      <!---->
-      <!--         <div> -->
-      <!--           <h3 class="qualification__name">Accounting</h3> -->
-      <!--           <span class="qualification__country" -->
-      <!--             >King khalid University - KSA</span -->
-      <!--           > -->
-      <!--           <span class="qualification__year">2020 - 2024</span> -->
-      <!--         </div> -->
-      <!--       </div> -->
-      <!--     </div> -->
-      <!--     <!--==================== QUALIFICATION 2 ====================-->
-      <!--     <div class="qualification__content"> -->
-      <!--       <h3 class="qualification__title"> -->
-      <!--         <i class="ri-building-line"></i> Work -->
-      <!--       </h3> -->
-      <!---->
-      <!--       <div class="qualification__info"> -->
-      <!--         <div> -->
-      <!--           <h3 class="qualification__name">Frontend Developer</h3> -->
-      <!--           <span class="qualification__country">Online - Freelance</span> -->
-      <!--           <span class="qualification__year">2020 - Now</span> -->
-      <!--         </div> -->
-      <!---->
-      <!--         <!-- <div> -->
-      <!--         <!-- <h3 class="qualification__name">Software Engineer</h3> -->
-      <!--         <!-- <span class="qualification__country">Microsoft - KSA</span> -->
-      <!--         <!-- <span class="qualification__year">2018 - 2020</span> -->
-      <!--         <!-- </div> -->
-      <!---->
-      <!--         <div> -->
-      <!--           <h3 class="qualification__name">Graphic Designer</h3> -->
-      <!--           <span class="qualification__country">Canva - KSA</span> -->
-      <!--           <span class="qualification__year">2020 - Now</span> -->
-      <!--         </div> -->
-      <!--       </div> -->
-      <!--     </div> -->
-      <!--   </div> -->
-      <!--   <img -->
-      <!--     src="./assets/img/shape-circle.svg" -->
-      <!--     alt="qualification image" -->
-      <!--     class="qualification__img" -->
-      <!--   /> -->
-      <!-- </section> -->
-
-      <!--==================== SERVICES ====================-->
-      <!-- <section class="services section" id="services"> -->
-      <!--   <h2 class="section__title">Services</h2> -->
-      <!--   <span class="section__subtitle">What i offer</span> -->
-      <!---->
-      <!--   <div class="services__container container grid section__border"> -->
-      <!--     <div class="services__card"> -->
-      <!--       <i class="ri-layout-4-line"></i> -->
-      <!---->
-      <!--       <h2 class="services__title"> -->
-      <!--         UI/UX <br /> -->
-      <!--         Designer -->
-      <!--       </h2> -->
-      <!---->
-      <!--       <p class="services__description"> -->
-      <!--         Service that provides the best quality and at the request of the -->
-      <!--         client, with professional work and customer support. -->
-      <!--       </p> -->
-      <!---->
-      <!--       <div class="services__border"></div> -->
-      <!--     </div> -->
-      <!---->
-      <!--     <div class="services__card"> -->
-      <!--       <i class="ri-code-line"></i> -->
-      <!---->
-      <!--       <h2 class="services__title"> -->
-      <!--         Website <br /> -->
-      <!--         Design -->
-      <!--       </h2> -->
-      <!---->
-      <!--       <p class="services__description"> -->
-      <!--         Service that provides the best quality and at the request of the -->
-      <!--         client, with professional work and customer support. -->
-      <!--       </p> -->
-      <!---->
-      <!--       <div class="services__border"></div> -->
-      <!--     </div> -->
-      <!---->
-      <!--     <div class="services__card"> -->
-      <!--       <i class="ri-quill-pen-line"></i> -->
-      <!---->
-      <!--       <h2 class="services__title"> -->
-      <!--         Digital <br /> -->
-      <!--         Animator -->
-      <!--       </h2> -->
-      <!---->
-      <!--       <p class="services__description"> -->
-      <!--         Service that provides the best quality and at the request of the -->
-      <!--         client, with professional work and customer support. -->
-      <!--       </p> -->
-      <!---->
-      <!--       <div class="services__border"></div> -->
-      <!--     </div> -->
-      <!--   </div> -->
-      <!-- </section> -->
-
-      <!-- ==================== PROJECTS ==================== -->
-      <section class="projects section" id="projects">
-        <h2 class="section__title">Projects</h2>
-        <span class="section__subtitle">Most recent word</span>
-        <div class="container section__border">
-          <div class="projects__container swiper">
-            <div class="swiper-wrapper">
-              <!--==================== PROJECT 1 ====================-->
-              <div class="projects__content swiper-slide">
-                <img
-                  src="./assets/img/tailwind-site.png"
-                  alt="projects image"
-                  class="projects__img"
-                />
-
-                <div>
-                  <snap class="projects__subtitle">Web</snap>
-                  <h1 class="projects__title">Tailwins static site</h1>
-                  <a href="http://mohammedbabiker.me/Tailwindcss-Static/" class="projects__button" target="_blank">
-                    View demo <i class="ri-arrow-right-line"></i>
-                  </a>
-                </div>
-              </div>
-              <!--==================== PROJECT 2 ====================-->
-              <div class="projects__content swiper-slide">
-                <img
-                  src="./assets/img/next-shop-site.png"
-                  alt="projects image"
-                  class="projects__img"
-                />
-
-                <div>
-                  <snap class="projects__subtitle">Web App</snap>
-                  <h1 class="projects__title">Teashop Store</h1>
-                  <a href="https://next-js-mohammedbabiker.vercel.app" class="projects__button" target="_blank">
-                    View demo <i class="ri-arrow-right-line"></i>
-                  </a>
-                </div>
-              </div>
-              <!--==================== PROJECT 3 ====================-->
-              <div class="projects__content swiper-slide">
-                <img
-                  src="./assets/img/pbotographer-site.png"
-                  alt="projects image"
-                  class="projects__img"
-                />
-
-                <div>
-                  <snap class="projects__subtitle">Nextjs</snap>
-                  <h1 class="projects__title">Next Photography app</h1>
-                  <a href="http://mohammedbabiker.me/Next-12.0.0/" class="projects__button" target="_blank">
-                    View demo <i class="ri-arrow-right-line"></i>
-                  </a>
-                </div>
-              </div>
-              <!--==================== PROJECT 4 ====================-->
-              <div class="projects__content swiper-slide">
-                <img
-                  src="./assets/img/keeper-ic-project.png"
-                  alt="projects image"
-                  class="projects__img"
-                />
-
-                <div>
-                  <snap class="projects__subtitle">DKeeper</snap>
-                  <h1 class="projects__title">Web3 Motoko Dkeeper app</h1>
-                  <a href="https://accgo-sqaaa-aaaal-ajdnq-cai.icp0.io" class="projects__button" target="_blank">
-                    View demo <i class="ri-arrow-right-line"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <!-- swiper arrows -->
-            <div class="swiper-button-next">
-              <i class="ri-arrow-right-s-line"></i>
-            </div>
-            <div class="swiper-button-prev">
-              <i class="ri-arrow-left-s-line"></i>
-            </div>
-
-            <!-- swiper-pagination -->
-            <div class="swiper-pagination"></div>
-          </div>
-        </div>
-      </section>
-
-      <!--==================== TESTIMONIAL ====================-->
-      <!-- <section class="testimonial section"> -->
-      <!--   <h2 class="section__title">Testimonial</h2> -->
-      <!--   <span class="section__subtitle">My client saying</span> -->
-      <!---->
-      <!--   <div class="container section__border"> -->
-      <!--     <div class="testimonial__container swiper"> -->
-      <!--       <div class="swiper-wrapper"> -->
-      <!--         <!--==================== TESTIMONIAL 1====================-->
-      <!--         <div class="testimonial__content swiper-slide"> -->
-      <!--           <p class="testimonial__description"> -->
-      <!--             “Working with Mohammed is to give a good impression, I carry -->
-      <!--             out my project at a good cost, with excellent quality and -->
-      <!--             attention. Great service and recommended.” -->
-      <!--           </p> -->
-      <!--           <div> -->
-      <!--             <h3 class="testimonial__name">Mazin Ali</h3> -->
-      <!--             <span class="testimonial__subtitle">Client</span> -->
-      <!--           </div> -->
-      <!--         </div> -->
-      <!--         <!--==================== TESTIMONIAL 2====================-->
-      <!--         <div class="testimonial__content swiper-slide"> -->
-      <!--           <p class="testimonial__description"> -->
-      <!--             “Working with Mohammed is to give a good impression, I carry -->
-      <!--             out my project at a good cost, with excellent quality and -->
-      <!--             attention. Great service and recommended.” -->
-      <!--           </p> -->
-      <!--           <div> -->
-      <!--             <h3 class="testimonial__name">Ahmed Hassan</h3> -->
-      <!--             <span class="testimonial__subtitle">Client</span> -->
-      <!--           </div> -->
-      <!--         </div> -->
-      <!--         <!--==================== TESTIMONIAL 3====================-->
-      <!--         <div class="testimonial__content swiper-slide"> -->
-      <!--           <p class="testimonial__description"> -->
-      <!--             “Working with Mohammed is to give a good impression, I carry -->
-      <!--             out my project at a good cost, with excellent quality and -->
-      <!--             attention. Great service and recommended.” -->
-      <!--           </p> -->
-      <!--           <div> -->
-      <!--             <h3 class="testimonial__name">Hamza Mohammed</h3> -->
-      <!--             <span class="testimonial__subtitle">Client</span> -->
-      <!--           </div> -->
-      <!--         </div> -->
-      <!--       </div> -->
-      <!--       <!-- swiper arrows -->
-      <!--       <div class="swiper-button-next"> -->
-      <!--         <i class="ri-arrow-right-s-line"></i> -->
-      <!--       </div> -->
-      <!--       <div class="swiper-button-prev"> -->
-      <!--         <i class="ri-arrow-left-s-line"></i> -->
-      <!--       </div> -->
-      <!--     </div> -->
-      <!--   </div> -->
-      <!--   <img -->
-      <!--     src="./assets/img/shape-wawes.svg" -->
-      <!--     alt="testimonial image" -->
-      <!--     class="testimonial__img" -->
-      <!--   /> -->
-      <!-- </section> -->
-
-      <!--==================== CONTACT ====================-->
-      <section class="contact section" id="contact">
-        <h2 class="section__title">Contact Me</h2>
-        <span class="section__subtitle">Get in touch</span>
-
-        <div class="contact__container container grid section__border">
-          <div class="contact__content">
-            <h3 class="contact__title">
-              <i class="ri-chat-3-line"></i> Talk to me
-            </h3>
-            <div class="contact__info">
-              <div class="contact__data">
-                <span class="contact__data-title">Email</span>
-                <span class="contact__data-info" >mohammedbabikerbabai@outlook.com</span>
-                <a href="mailto:mohammedbabikerbabai@outlook.com" target="_blank"  class="contact__button">
-                  Mail me <i class="ri-arrow-right-line"></i>
-                </a>
-              </div>
-
-              <div class="contact__data">
-                <span class="contact__data-title">Whatsapp</span>
-                <span class="contact__data-info">+249 11 078 9825</span>
-                <!-- NEW ADD FOR EMAIL AS MAILTO SO LETS HOPE -->
-                <a
-                  href="https://wa.me/+249110789825"
-                  target="_blank"
-                  class="contact__button"
-                >
-                  Write me <i class="ri-arrow-right-line"></i>
-                </a>
-              </div>
-
-              <div class="contact__data">
-                <span class="contact__data-title">Messenger</span>
-                <span class="contact__data-info">@mbabai20</span>
-
-                <a href="#" target="_blank" class="contact__button">
-                  Write me <i class="ri-arrow-right-line"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="contact__content">
-            <h3 class="contact__title">
-              <i class="ri-send-plane-line"></i> Write me your project
-            </h3>
-
-            <form action="#" class="contact__form" id="contact-form">
-              <div class="contact__form-div">
-                <label class="contact__form-tag">Names</label>
-                <input
-                  type="text"
-                  name="user_name"
-                  required
-                  placeholder="Write your names"
-                  class="contact__form-input"
-                  id="contact-name"
-                />
-              </div>
-
-              <div class="contact__form-div">
-                <label class="contact__form-tag">Mail</label>
-                <input
-                  type="email"
-                  name="user_email"
-                  required
-                  placeholder="Write your email"
-                  class="contact__form-input"
-                  id="contact-email"
-                />
-              </div>
-
-              <div class="contact__form-div contact__form-area">
-                <label class="contact__form-tag">Project</label>
-                <textarea
-                  name="user_project"
-                  placeholder="Write your project"
-                  id="contact-project"
-                  class="contact__form-input"
-                ></textarea>
-              </div>
-
-              <p class="contact__message" id="contact-message"></p>
-
-              <button type="submit" class="contact__button">
-                Submit <i class="ri-arrow-right-up-line"></i>
-              </button>
+            <form class="terminal__prompt-row" id="terminal-form" autocomplete="off">
+              <span class="terminal__prompt" aria-hidden="true">
+                <span class="terminal__user">mohammedbabiker</span><span class="terminal__at">@</span><span
+                  class="terminal__host">portfolio</span><span class="terminal__sep">:</span><span
+                  class="terminal__path">~</span><span class="terminal__dollar">$</span>
+              </span>
+              <input class="terminal__input" id="terminal-input" type="text" name="cmd" autocomplete="off"
+                autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Terminal input"
+                placeholder="type 'help' and press Enter" />
             </form>
           </div>
+
+          <div class="terminal__hints" aria-label="Quick commands">
+            <span class="terminal__hints-label">Try:</span>
+            <button type="button" class="terminal__chip" data-cmd="help">help</button>
+            <button type="button" class="terminal__chip" data-cmd="whoami">whoami</button>
+            <button type="button" class="terminal__chip" data-cmd="skills">skills</button>
+            <button type="button" class="terminal__chip" data-cmd="projects">projects</button>
+            <button type="button" class="terminal__chip" data-cmd="contact">contact</button>
+          </div>
         </div>
-      </section>
-    </main>
-
-    <!--==================== FOOTER ====================-->
-    <footer class="footer">
-      <div class="footer__container container">
-        <h1 class="footer__title">Mohammed</h1>
-        <p>Frontend Developer</p>
-        <ul class="footer__list">
-          <li>
-            <a href="#home" class="footer__link">Home</a>
-          </li>
-
-          <li>
-            <a href="#skills" class="footer__link">Skills</a>
-          </li>
-
-          <li>
-            <a href="#projects" class="footer__link">Projects</a>
-          </li>
-        </ul>
-
-        <ul class="footer__social">
-          <a
-            href="https://www.linkedin.com/in/mohammedbabikerbabai/"
-            target="_blank"
-            class="footer__social-link"
-          >
-            <i class="ri-linkedin-box-line"></i>
-          </a>
-
-          <a
-            href="https://github.com/mohammedbabiker"
-            target="_blank"
-            class="footer__social-link"
-          >
-            <i class="ri-github-line"></i>
-          </a>
-
-          <a
-            href="https://dribbble.com/"
-            target="_blank"
-            class="footer__social-link"
-          >
-            <i class="ri-dribbble-line"></i>
-          </a>
-        </ul>
-
-        <span class="footer__copy">
-          &#169; Copyright Mohammed. All rights reserved
-        </span>
       </div>
-    </footer>
 
-    <!--========== SCROLL UP ==========-->
-    <a href="#" class="scrollup" id="scroll-up">
-      <i class="ri-arrow-up-line"></i>
-    </a>
+      <ul class="hero__stats container">
+        <li><strong>03+</strong><span>Years of experience</span></li>
+        <li><strong>06+</strong><span>Projects shipped</span></li>
+        <li><strong>01+</strong><span>Companies worked</span></li>
+      </ul>
+    </section>
 
-    <!--=============== SCROLLREVEAL ===============-->
-    <script src="./assets/js/scrollreveal.min.js"></script>
+    <!--==================== SKILLS ====================-->
+    <section class="section" id="skills">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="section__eyebrow">Toolbox</span>
+          <h2 class="section__title">Skills &amp; Stack</h2>
+          <p class="section__subtitle">The tools I reach for daily — front-end polish, back-end rigor, and
+            infrastructure that holds up.</p>
+        </header>
 
-    <!--=============== SWIPER JS ===============-->
-    <script src="./assets/js/swiper-bundle.min.js"></script>
+        <div class="skills__grid">
+          <article class="skill-card reveal"><img src="./assets/img/html-1.svg" alt="" width="40" height="40"
+              loading="lazy" />
+            <h3>HTML</h3>
+            <p>Intermediate</p>
+          </article>
+          <article class="skill-card reveal"><img src="./assets/img/css-3.svg" alt="" width="40" height="40"
+              loading="lazy" />
+            <h3>CSS</h3>
+            <p>Advanced</p>
+          </article>
+          <article class="skill-card reveal"><img src="./assets/img/logo-javascript.svg" alt="" width="40" height="40"
+              loading="lazy" />
+            <h3>JavaScript</h3>
+            <p>Intermediate</p>
+          </article>
+          <article class="skill-card reveal"><img src="./assets/img/react-2.svg" alt="" width="40" height="40"
+              loading="lazy" />
+            <h3>React</h3>
+            <p>Basic</p>
+          </article>
+          <article class="skill-card reveal"><img src="./assets/img/figma-1.svg" alt="" width="40" height="40"
+              loading="lazy" />
+            <h3>Figma</h3>
+            <p>Advanced</p>
+          </article>
+          <article class="skill-card reveal"><img src="./assets/img/canva.svg" alt="" width="40" height="40"
+              loading="lazy" />
+            <h3>Canva</h3>
+            <p>Advanced</p>
+          </article>
+          <article class="skill-card reveal"><img src="./assets/img/adobe-photoshop-2.svg" alt="" width="40" height="40"
+              loading="lazy" />
+            <h3>Photoshop</h3>
+            <p>Basic</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-    <!--=============== EMAIL JS ===============-->
-    <script
-      type="text/javascript"
-      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
-    ></script>
+    <!--==================== PROJECTS ====================-->
+    <section class="section" id="projects">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="section__eyebrow">Selected work</span>
+          <h2 class="section__title">Projects</h2>
+          <p class="section__subtitle">A few things I've shipped recently — each one live and clickable.</p>
+        </header>
 
-    <!--========== JQUERY ==========-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <div class="projects__grid">
+          <a class="project reveal" href="https://mohammedbabiker.me/Tailwindcss-Static/" target="_blank"
+            rel="noopener noreferrer">
+            <div class="project__media"><img src="./assets/img/tailwind-site.png" alt="Tailwind static site preview"
+                loading="lazy" /></div>
+            <div class="project__meta">
+              <span class="project__tag">Web</span>
+              <h3 class="project__title">Tailwind Static Site</h3>
+              <span class="project__link">View demo
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  aria-hidden="true">
+                  <path d="M7 17 17 7M9 7h8v8" />
+                </svg>
+              </span>
+            </div>
+          </a>
 
-    <!--=============== MAIN JS ===============-->
-    <script src="./assets/js/main.js"></script>
-  </body>
+          <a class="project reveal" href="https://next-js-mohammedbabiker.vercel.app" target="_blank"
+            rel="noopener noreferrer">
+            <div class="project__media"><img src="./assets/img/next-shop-site.png" alt="Teashop Store preview"
+                loading="lazy" /></div>
+            <div class="project__meta">
+              <span class="project__tag">Web App</span>
+              <h3 class="project__title">Teashop Store</h3>
+              <span class="project__link">View demo
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  aria-hidden="true">
+                  <path d="M7 17 17 7M9 7h8v8" />
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <a class="project reveal" href="https://mohammedbabiker.me/Next-12.0.0/" target="_blank"
+            rel="noopener noreferrer">
+            <div class="project__media"><img src="./assets/img/pbotographer-site.png" alt="Next Photography app preview"
+                loading="lazy" /></div>
+            <div class="project__meta">
+              <span class="project__tag">Next.js</span>
+              <h3 class="project__title">Next Photography</h3>
+              <span class="project__link">View demo
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  aria-hidden="true">
+                  <path d="M7 17 17 7M9 7h8v8" />
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <a class="project reveal" href="https://accgo-sqaaa-aaaal-ajdnq-cai.icp0.io" target="_blank"
+            rel="noopener noreferrer">
+            <div class="project__media"><img src="./assets/img/keeper-ic-project.png" alt="DKeeper Web3 app preview"
+                loading="lazy" /></div>
+            <div class="project__meta">
+              <span class="project__tag">Web3</span>
+              <h3 class="project__title">DKeeper — Motoko</h3>
+              <span class="project__link">View demo
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  aria-hidden="true">
+                  <path d="M7 17 17 7M9 7h8v8" />
+                </svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!--==================== CONTACT ====================-->
+    <section class="section" id="contact">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="section__eyebrow">Get in touch</span>
+          <h2 class="section__title">Let's build something</h2>
+          <p class="section__subtitle">Have a project in mind? I'm one message away.</p>
+        </header>
+
+        <div class="contact__grid">
+          <aside class="contact__info reveal">
+            <a class="contact__card" href="mailto:mohammedbabikerbabai@outlook.com">
+              <span class="contact__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="m2 7 10 6 10-6" />
+                </svg>
+              </span>
+              <div><strong>Email</strong><span>mohammedbabikerbabai@outlook.com</span></div>
+            </a>
+
+            <a class="contact__card" href="https://wa.me/+249110789825" target="_blank" rel="noopener noreferrer">
+              <span class="contact__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M17.5 14.4c-.3-.2-1.7-.8-2-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-.3-.2-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6.1-.1.3-.4.5-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.2-.6-1.5-.9-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2 0 1.3.9 2.5 1.1 2.7.1.2 1.8 2.8 4.4 3.9.6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.5-.3zM12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.4A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.2-.4-4.5-1.2l-.3-.2-2.8.8.8-2.7-.2-.3A8.2 8.2 0 1 1 12 20.2z" />
+                </svg>
+              </span>
+              <div><strong>WhatsApp</strong><span>+249 11 078 9825</span></div>
+            </a>
+
+            <a class="contact__card" href="https://www.linkedin.com/in/mohammedbabikerbabai/" target="_blank"
+              rel="noopener noreferrer">
+              <span class="contact__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 1 1 8.25 6.5 1.75 1.75 0 0 1 6.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0 0 13 14.19a.66.66 0 0 0 0 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 0 1 2.7-1.4c1.55 0 3.36.86 3.36 3.66z" />
+                </svg>
+              </span>
+              <div><strong>LinkedIn</strong><span>mohammedbabikerbabai</span></div>
+            </a>
+          </aside>
+
+          <form class="contact__form reveal" id="contact-form" novalidate>
+            <div class="field">
+              <label for="contact-name">Name</label>
+              <input id="contact-name" name="user_name" type="text" required autocomplete="name"
+                placeholder="Your name" />
+            </div>
+
+            <div class="field">
+              <label for="contact-email">Email</label>
+              <input id="contact-email" name="user_email" type="email" required autocomplete="email"
+                placeholder="you@company.com" />
+            </div>
+
+            <div class="field">
+              <label for="contact-project">Project details</label>
+              <textarea id="contact-project" name="user_project" required rows="5"
+                placeholder="Tell me what you're building…"></textarea>
+            </div>
+
+            <p class="contact__message" id="contact-message" role="status" aria-live="polite"></p>
+
+            <button type="submit" class="btn btn--primary btn--full" id="contact-submit">
+              Send message
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                aria-hidden="true">
+                <path d="M5 12h14M13 5l7 7-7 7" />
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!--==================== FOOTER ====================-->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="#home" class="nav__logo"><span class="nav__logo-bracket">&lt;</span>mb<span
+            class="nav__logo-bracket">/&gt;</span></a>
+        <p>Full-Stack &amp; DevOps Engineer — building secure, automated web systems.</p>
+      </div>
+
+      <ul class="footer__links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="container footer__bottom">
+      <span>&copy; <span id="year">2026</span> Mohammed Babiker. All rights reserved.</span>
+      <span class="footer__sig">crafted with <span class="footer__heart">♥</span> &amp; a lot of
+        <code>git commit's</code></span>
+    </div>
+  </footer>
+
+  <button class="to-top" id="to-top" type="button" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+      aria-hidden="true">
+      <path d="M12 19V5M5 12l7-7 7 7" />
+    </svg>
+  </button>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="module" src="./assets/js/main.js"></script>
+</body>
+
 </html>

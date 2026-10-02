@@ -1,284 +1,339 @@
-/*=============== SHOW MENU ===============*/
-const $navMenu = $("#nav-menu"),
-  $navToggle = $("#nav-toggle"),
-  $navClose = $("#nav-close");
+/* =========================================================
+   Mohammed Babiker — Portfolio
+   Modules: Theme · Nav · ScrollSpy · Reveal · Terminal · Form · ToTop
+   ========================================================= */
 
-/*===== MENU SHOW =====*/
-/* Validate if constant exists */
-if ($navToggle) {
-  $navToggle.on("click", () => {
-    $navMenu.addClass("show-menu");
+const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+/* =============== THEME =============== */
+(() => {
+  const root = document.documentElement;
+  const btn = $('#theme-toggle');
+
+  const setTheme = (theme) => {
+    root.classList.toggle('dark-theme', theme === 'dark');
+    try { localStorage.setItem('theme', theme); } catch { }
+    const meta = $('meta[name="theme-color"]');
+    if (meta) meta.content = theme === 'dark' ? '#0a0c10' : '#f7f9fc';
+  };
+
+  const toggleTheme = () => {
+    setTheme(root.classList.contains('dark-theme') ? 'light' : 'dark');
+  };
+
+  btn?.addEventListener('click', toggleTheme);
+  document.addEventListener('toggle-theme', toggleTheme);
+
+  // Respect OS changes only if the user hasn't chosen manually
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    try { if (!localStorage.getItem('theme')) setTheme(e.matches ? 'dark' : 'light'); } catch { }
   });
-}
+})();
 
-/*===== MENU HIDDEN =====*/
-/* Validate if constant exists */
-if ($navClose) {
-  $navClose.on("click", function () {
-    $navMenu.removeClass("show-menu");
+/* =============== NAV (mobile menu) =============== */
+(() => {
+  const menu = $('#nav-menu');
+  const toggle = $('#nav-toggle');
+  if (!menu || !toggle) return;
+
+  const open = () => { menu.classList.add('is-open'); toggle.setAttribute('aria-expanded', 'true'); document.body.style.overflow = 'hidden'; };
+  const close = () => { menu.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); document.body.style.overflow = ''; };
+
+  toggle.addEventListener('click', () => menu.classList.contains('is-open') ? close() : open());
+
+  $$('.nav__link').forEach((a) => a.addEventListener('click', close));
+
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+
+  document.addEventListener('click', (e) => {
+    if (!menu.classList.contains('is-open')) return;
+    if (!menu.contains(e.target) && !toggle.contains(e.target)) close();
   });
-}
+})();
 
-/*=============== REMOVE MENU MOBILE ===============*/
-const navLink = document.querySelectorAll(".nav__link");
+/* =============== SCROLL: header bg + progress + to-top =============== */
+(() => {
+  const header = $('#header');
+  const progress = $('#scroll-progress');
+  const toTop = $('#to-top');
+  let ticking = false;
 
-const linkAction = () => {
-  const $navMenu = $("#nav-menu");
-  // When we click on each nav__link, we remove the show-menu class
-  $navMenu.removeClass("show-menu");
-};
-navLink.forEach((n) => n.addEventListener("click", linkAction));
+  const onScroll = () => {
+    const y = window.scrollY;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
 
-/*=============== SWIPER PROJECTS ===============*/
+    header?.classList.toggle('is-scrolled', y > 20);
+    toTop?.classList.toggle('is-visible', y > 600);
+    if (progress) progress.style.width = max > 0 ? `${(y / max) * 100}%` : '0%';
 
-let swiperProjects = new Swiper(".projects__container", {
-  loop: true,
-  spaceBetween: 24,
+    ticking = false;
+  };
 
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-  pagination: {
-    el: ".swiper-pagination",
-  },
-  breakpoints: {
-    1200: {
-      slidesPerView: 2,
-      spaceBetween: -56,
-    },
-  },
-});
+  addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
+  }, { passive: true });
 
-/*=============== SWIPER TESTIMONIAL ===============*/
-let swiperTestimonial = new Swiper(".testimonial__container", {
-  grabCursor: true,
+  toTop?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
+  });
 
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-});
+  onScroll();
+})();
 
-/*=============== EMAIL JS ===============*/
+/* =============== SCROLL SPY (IntersectionObserver) =============== */
+(() => {
+  const links = $$('.nav__link');
+  const map = new Map(links.map((l) => [l.getAttribute('href')?.slice(1), l]));
 
-const contactForm = document.getElementById("contact-form"),
-  contactName = document.getElementById("contact-name"),
-  contactEmail = document.getElementById("contact-email"),
-  contactProject = document.getElementById("contact-project"),
-  contactMessage = document.getElementById("contact-message");
+  const sections = [...map.keys()].map((id) => document.getElementById(id)).filter(Boolean);
+  if (!sections.length) return;
 
-const sendEmail = (e) => {
-  e.preventDefault();
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      links.forEach((l) => l.classList.remove('active-link'));
+      map.get(entry.target.id)?.classList.add('active-link');
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
 
-  // Check if the field has a value
-  if (
-    contactName.value === "" ||
-    contactEmail.value === "" ||
-    contactProject.value === ""
-  ) {
-    // Add and remove color
-    contactMessage.classList.remove("color-blue");
-    contactMessage.classList.add("color-red");
+  sections.forEach((s) => io.observe(s));
+})();
 
-    // Show message
-    contactMessage.textContent = "Write all the input fields 📩";
-  } else {
-    // serviceID - templateID - #form - publicKey
-    emailjs
-      .sendForm(
-        "service_jry8rp8",
-        "template_dsfngzq",
-        "#contact-form",
-        "Pr8W8NGG9EdB1wINQ"
-      )
-      .then(
-        () => {
-          // Show message and add color
-          contactMessage.classList.add("color-blue");
-          contactMessage.textContent = "Massage sent ✅";
+/* =============== REVEAL ON SCROLL =============== */
+(() => {
+  const els = $$('.reveal');
+  if (!els.length) return;
 
-          // Remove message after five seconds
-          setTimeout(() => {
-            contactMessage.textContent = "";
-          }, 5000);
-        },
-        (error) => {
-          alert("OOPS! SOMETHING HAS FAILED...", error);
-        }
-      );
+  if (prefersReduced) { els.forEach((el) => el.classList.add('is-visible')); return; }
 
-    // To clear the input field
-    contactName.value = "";
-    contactEmail.value = "";
-    contactProject.value = "";
-  }
-};
-contactForm.addEventListener("submit", sendEmail);
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (!entry.isIntersecting) return;
+      setTimeout(() => entry.target.classList.add('is-visible'), i * 60);
+      io.unobserve(entry.target);
+    });
+  }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
 
-/*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
-const sections = document.querySelectorAll("section[id]");
+  els.forEach((el) => io.observe(el));
+})();
 
-const scrollActive = () => {
-  const scrollY = window.pageYOffset;
+/* =============== TERMINAL =============== */
+(() => {
+  const root = $('#terminal');
+  if (!root) return;
 
-  sections.forEach((current) => {
-    const sectionHeight = current.offsetHeight,
-      sectionTop = current.offsetTop - 58,
-      sectionId = current.getAttribute("id"),
-      sectionsClass = document.querySelector(
-        ".nav__menu a[href*=" + sectionId + "]"
-      );
+  const output = $('#terminal-output');
+  const form = $('#terminal-form');
+  const input = $('#terminal-input');
+  const chips = $$('.terminal__chip');
 
-    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-      sectionsClass.classList.add("active-link");
+  const history = [];
+  let historyIdx = -1;
+
+  /* ---- output helpers ---- */
+  const print = (line) => {
+    const el = document.createElement('div');
+    el.className = 'term-line';
+
+    if (line.type === 'cmd') {
+      el.innerHTML = '<span class="term-prompt">$</span> ';
+      el.append(Object.assign(document.createElement('span'), { textContent: line.text }));
+    } else if (line.type === 'ok') {
+      el.innerHTML = '<span class="term-ok">[ OK ]</span> ';
+      el.append(Object.assign(document.createElement('span'), { textContent: line.text }));
+    } else if (line.type === 'err') {
+      el.innerHTML = '<span class="term-err">error:</span> ';
+      el.append(Object.assign(document.createElement('span'), { textContent: line.text }));
     } else {
-      sectionsClass.classList.remove("active-link");
+      // Trusted output only (our own strings)
+      el.innerHTML = line.text;
+    }
+
+    output.append(el);
+    output.scrollTop = output.scrollHeight;
+  };
+
+  const printAll = (lines) => (Array.isArray(lines) ? lines : [lines]).forEach(print);
+
+  /* ---- command definitions ---- */
+  const commands = {
+    help: () => [
+      { text: 'Available commands:' },
+      { text: '  <b>whoami</b>    who I am' },
+      { text: '  <b>skills</b>    tech I work with' },
+      { text: '  <b>projects</b>  selected work' },
+      { text: '  <b>contact</b>   how to reach me' },
+      { text: '  <b>theme</b>     toggle dark / light' },
+      { text: '  <b>ls</b>        list the site sections' },
+      { text: '  <b>clear</b>     clear the screen' },
+    ],
+    whoami: () => [
+      { text: '<b>Mohammed Babiker</b> — Full-Stack &amp; DevOps Engineer.' },
+      { text: 'Based in Sudan. Building secure, automated web systems.' },
+    ],
+    skills: () => [
+      { text: '<b>Frontend:</b> HTML · CSS · JavaScript · React' },
+      { text: '<b>Design:</b>   Figma · Photoshop · Canva' },
+      { text: '<b>DevOps:</b>   Docker · Ansible · CI/CD' },
+    ],
+    projects: () => [
+      { text: '1. Tailwind Static    — <a href="https://mohammedbabiker.me/Tailwindcss-Static/" target="_blank" rel="noopener">view →</a>' },
+      { text: '2. Teashop Store      — <a href="https://next-js-mohammedbabiker.vercel.app" target="_blank" rel="noopener">view →</a>' },
+      { text: '3. Next Photography   — <a href="https://mohammedbabiker.me/Next-12.0.0/" target="_blank" rel="noopener">view →</a>' },
+      { text: '4. DKeeper Web3       — <a href="https://accgo-sqaaa-aaaal-ajdnq-cai.icp0.io" target="_blank" rel="noopener">view →</a>' },
+    ],
+    contact: () => [
+      { text: 'email: <a href="mailto:mohammedbabikerbabai@outlook.com">mohammedbabikerbabai@outlook.com</a>' },
+      { text: 'phone: +249 11 078 9825' },
+      { text: 'or scroll down to the form ↓' },
+    ],
+    ls: () => [{ text: 'skills/  projects/  contact.md  README.md' }],
+    sudo: () => ({ type: 'err', text: 'permission denied: nice try.' }),
+    clear: () => 'CLEAR',
+    theme: () => { document.dispatchEvent(new CustomEvent('toggle-theme')); return { type: 'ok', text: 'theme toggled' }; },
+  };
+
+  /* ---- execution ---- */
+  const run = (raw) => {
+    const [name, ...args] = raw.trim().split(/\s+/);
+    const cmd = commands[name.toLowerCase()];
+
+    if (!cmd) {
+      print({ type: 'err', text: `command not found: ${name}. Try 'help'.` });
+      return;
+    }
+
+    const result = cmd(args);
+    if (result === 'CLEAR') { output.innerHTML = ''; return; }
+    if (result) printAll(result);
+  };
+
+  const submit = () => {
+    const raw = input.value.trim();
+    input.value = '';
+    if (!raw) return;
+
+    history.push(raw);
+    historyIdx = history.length;
+    print({ type: 'cmd', text: raw });
+    run(raw);
+  };
+
+  /* ---- keyboard ---- */
+  const onKey = (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); submit(); }
+    else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (!history.length) return;
+      historyIdx = Math.max(0, historyIdx - 1);
+      input.value = history[historyIdx] ?? '';
+    }
+    else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (!history.length) return;
+      historyIdx = Math.min(history.length, historyIdx + 1);
+      input.value = history[historyIdx] ?? '';
+    }
+    else if (e.key === 'Tab') {
+      e.preventDefault();
+      const partial = input.value.trim().toLowerCase();
+      if (!partial) return;
+      const match = Object.keys(commands).find((c) => c.startsWith(partial));
+      if (match) input.value = match + ' ';
+    }
+    else if (e.key === 'l' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); output.innerHTML = ''; }
+  };
+
+  /* ---- boot sequence ---- */
+  const boot = async () => {
+    const lines = [
+      { type: 'cmd', text: './init.sh' },
+      { type: 'ok', text: 'loading profile…' },
+      { type: 'ok', text: 'mounting skills' },
+      { type: 'ok', text: 'services online' },
+      { text: 'Welcome. Type <b>help</b> to explore, or tap a chip below.' },
+    ];
+
+    for (const line of lines) {
+      if (!prefersReduced) await sleep(line.type === 'cmd' ? 280 : 220);
+      print(line);
+    }
+  };
+
+  /* ---- wiring ---- */
+  form?.addEventListener('submit', (e) => { e.preventDefault(); submit(); });
+
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      input.value = chip.dataset.cmd || '';
+      input.focus();
+      submit();
+    });
+  });
+
+  input.addEventListener('keydown', onKey);
+  root.addEventListener('click', (e) => {
+    if (!e.target.closest('button') && !e.target.closest('a')) input.focus();
+  });
+
+  boot();
+})();
+
+/* =============== CONTACT FORM (EmailJS) =============== */
+(() => {
+  const form = $('#contact-form');
+  if (!form || typeof emailjs === 'undefined') return;
+
+  const name = $('#contact-name');
+  const email = $('#contact-email');
+  const project = $('#contact-project');
+  const message = $('#contact-message');
+  const submit = $('#contact-submit');
+
+  const setMessage = (text, kind = '') => {
+    message.textContent = text;
+    message.classList.toggle('is-error', kind === 'error');
+    message.classList.toggle('is-success', kind === 'success');
+  };
+
+  const validate = () => {
+    let ok = true;
+    [[name, 'Please enter your name.'], [email, 'Please enter your email.'], [project, 'Tell me about your project.']]
+      .forEach(([field, msg]) => {
+        const invalid = !field.value.trim() || (field.type === 'email' && !/^\S+@\S+\.\S+$/.test(field.value));
+        field.setAttribute('aria-invalid', invalid ? 'true' : 'false');
+        if (invalid && ok) { setMessage(msg, 'error'); ok = false; }
+      });
+    return ok;
+  };
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!validate()) return;
+
+    submit.disabled = true;
+    setMessage('Sending…');
+
+    try {
+      await emailjs.sendForm('service_jry8rp8', 'template_dsfngzq', form, 'Pr8W8NGG9EdB1wINQ');
+      setMessage('Message sent — I\'ll get back to you soon. ✅', 'success');
+      form.reset();
+      [name, email, project].forEach((f) => f.setAttribute('aria-invalid', 'false'));
+      setTimeout(() => setMessage(''), 6000);
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      setMessage('Something went wrong. Try emailing me directly.', 'error');
+    } finally {
+      submit.disabled = false;
     }
   });
-};
-window.addEventListener("scroll", scrollActive);
+})();
 
-/*=============== SHOW SCROLL UP ===============*/
-
-const scrollUp = () => {
-  const scrollUp = document.getElementById("scroll-up");
-  // When the scroll is higher than 350 viewport height, add the show-scroll class to the a tag with the scroll-up class
-  this.scrollY >= 350
-    ? scrollUp.classList.add("show-scroll")
-    : scrollUp.classList.remove("show-scroll");
-};
-window.addEventListener("scroll", scrollUp);
-
-/*=============== DARK LIGHT THEME ===============*/
-
-const themeButton = document.getElementById("theme-button");
-const darkTheme = "dark-theme";
-const iconTheme = "ri-sun-line";
-
-// Previously selected topic (if user selected)
-const selectedTheme = localStorage.getItem("selected-theme");
-const selectedIcon = localStorage.getItem("selected-icon");
-
-// We obtain the current theme that the interface has by validating the dark-theme class
-const getCurrentTheme = () =>
-  document.body.classList.contains(darkTheme) ? "dark" : "light";
-const getCurrentIcon = () =>
-  themeButton.classList.contains(iconTheme) ? "ri-moon-line" : "ri-sun-line";
-
-// We validate if the user previously chose a topic
-if (selectedTheme) {
-  // If the validation is fulfilled, we ask what the issue was to know if we activated or deactivated the dark
-  document.body.classList[selectedTheme === "dark" ? "add" : "remove"](
-    darkTheme
-  );
-  themeButton.classList[selectedIcon === "ri-moon-line" ? "add" : "remove"](
-    iconTheme
-  );
-}
-
-// Activate / deactivate the theme manually with the button
-themeButton.addEventListener("click", () => {
-  // Add or remove the dark / icon theme
-  document.body.classList.toggle(darkTheme);
-  themeButton.classList.toggle(iconTheme);
-  // We save the theme and the current icon that the user chose
-  localStorage.setItem("selected-theme", getCurrentTheme());
-  localStorage.setItem("selected-icon", getCurrentIcon());
-});
-
-/*=============== CHANGE BACKGROUND HEADER ===============*/
-const scrollHeader = () => {
-  const header = document.getElementById("header");
-  // When the scroll is greater than 50 viewport height, add the scroll-header class to the header tag
-  this.scrollY >= 50
-    ? header.classList.add("bg-header")
-    : header.classList.remove("bg-header");
-};
-window.addEventListener("scroll", scrollHeader);
-
-/*=============== SCROLL REVEAL ANIMATION ===============*/
-
-const sr = ScrollReveal({
-  origin: "top",
-  distance: "60px",
-  duration: 2500,
-  delay: 400,
-  // reset: true /*animation repeat  */
-});
-
-sr.reveal(
-  `.home__data, .projects__container, .testimonial__container, .footer__container`
-);
-sr.reveal(`.home__info div`, { delay: 600, origin: "bottom", interval: 100 });
-sr.reveal(`.skills__content:nth-child(1), .contact__content:nth-child(1)`, {
-  origin: "left",
-});
-sr.reveal(`.skills__content:nth-child(2), .contact__content:nth-child(2)`, {
-  origin: "right",
-});
-sr.reveal(`.qualification__content, .services__card`, { interval: 100 });
-
-// Terminal Typewriter Effect
-
-const commands = [
-  "whoami",
-  "Loading profile...",
-  "cat skills.txt",
-  "Hi, I’m Mohammed, a Full-Stack Developer based in Sudan.",
-  "./deploy_project.sh",
-  "Success: Services are up and running!"
-];
-class TerminalTypewriter {
-  textElement;
-  currentCommandIndex = 0;
-  currentCharIndex = 0;
-  isTyping = true;
-  typingSpeed = 50;
-  pauseBetweenCommands = 1500;
-  constructor(elementId) {
-    const el = document.getElementById(elementId);
-    if (!el) {
-      throw new Error(`Element with id ${elementId} not found.`);
-    }
-    this.textElement = el;
-  }
-  start() {
-    this.type();
-  }
-  type() {
-    const currentCommand = commands[this.currentCommandIndex];
-    if (this.isTyping) {
-      // Add next character
-      this.textElement.textContent = currentCommand.substring(0, this.currentCharIndex + 1);
-      this.currentCharIndex++;
-      if (this.currentCharIndex === currentCommand.length) {
-        this.isTyping = false;
-        setTimeout(() => this.erase(), this.pauseBetweenCommands);
-      }
-      else {
-        setTimeout(() => this.type(), this.typingSpeed);
-      }
-    }
-  }
-  erase() {
-    if (!this.isTyping) {
-      // Clear the terminal line for the next command
-      this.textElement.textContent = "";
-      this.currentCharIndex = 0;
-      this.isTyping = true;
-      this.currentCommandIndex = (this.currentCommandIndex + 1) % commands.length;
-      setTimeout(() => this.type(), this.typingSpeed);
-    }
-  }
-}
-// Initialize when the DOM is fully loaded
-document.addEventListener("DOMContentLoaded", () => {
-  try {
-    const terminal = new TerminalTypewriter("typewriter");
-    terminal.start();
-  }
-  catch (error) {
-    console.error("Failed to initialize terminal effect:", error);
-  }
-});
+/* =============== YEAR =============== */
+(() => {
+  const el = $('#year');
+  if (el) el.textContent = new Date().getFullYear();
+})();
