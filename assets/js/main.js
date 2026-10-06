@@ -301,7 +301,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
   const validate = () => {
     let ok = true;
-    [[name, 'Please enter your name.'], [email, 'Please enter your email.'], [project, 'Tell me about your project.']]
+    [[name, 'Please enter your name.'], [email, 'Please enter a valid email.'], [project, 'Tell me about your project.']]
       .forEach(([field, msg]) => {
         const invalid = !field.value.trim() || (field.type === 'email' && !/^\S+@\S+\.\S+$/.test(field.value));
         field.setAttribute('aria-invalid', invalid ? 'true' : 'false');
@@ -318,7 +318,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
     setMessage('Sending…');
 
     try {
-      await emailjs.sendForm('service_jry8rp8', 'template_dsfngzq', form, 'Pr8W8NGG9EdB1wINQ');
+      await emailjs.sendForm('service_qvyv3uu', 'template_zntgsnq', form, '1CIT1HnmTY3lXPXe0');
       setMessage('Message sent — I\'ll get back to you soon. ✅', 'success');
       form.reset();
       [name, email, project].forEach((f) => f.setAttribute('aria-invalid', 'false'));
