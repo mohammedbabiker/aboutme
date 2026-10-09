@@ -180,9 +180,9 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
       { text: '<b>DevOps:</b>   Docker · Ansible · CI/CD' },
     ],
     projects: () => [
-      { text: '1. Tailwind Static    — <a href="https://mohammedbabiker.me/Tailwindcss-Static/" target="_blank" rel="noopener">view →</a>' },
+      { text: '1. Tailwind Static    — <a href="https://mohammedbabiker.github.io/Tailwindcss-Static/" target="_blank" rel="noopener">view →</a>' },
       { text: '2. Teashop Store      — <a href="https://next-js-mohammedbabiker.vercel.app" target="_blank" rel="noopener">view →</a>' },
-      { text: '3. Next Photography   — <a href="https://mohammedbabiker.me/Next-12.0.0/" target="_blank" rel="noopener">view →</a>' },
+      { text: '3. Next Photography   — <a href="https://mohammedbabiker.github.io/Next-12.0.0/" target="_blank" rel="noopener">view →</a>' },
       { text: '4. DKeeper Web3       — <a href="https://accgo-sqaaa-aaaal-ajdnq-cai.icp0.io" target="_blank" rel="noopener">view →</a>' },
     ],
     contact: () => [
