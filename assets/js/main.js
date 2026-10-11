@@ -337,3 +337,33 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   const el = $('#year');
   if (el) el.textContent = new Date().getFullYear();
 })();
+
+/* =============== PROJECT CURSOR SPOTLIGHT =============== */
+(() => {
+  // Skip on touch-only devices — no cursor, nothing to follow
+  if (matchMedia('(hover: none)').matches) return;
+
+  let ticking = false;
+  let pending = null;
+
+  const update = () => {
+    if (pending) {
+      const { card, x, y } = pending;
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', `${((x - r.left) / r.width) * 100}%`);
+      card.style.setProperty('--my', `${((y - r.top) / r.height) * 100}%`);
+      pending = null;
+    }
+    ticking = false;
+  };
+
+  document.addEventListener('pointermove', (e) => {
+    const card = e.target.closest('.project');
+    if (!card) return;
+    pending = { card, x: e.clientX, y: e.clientY };
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+})();
