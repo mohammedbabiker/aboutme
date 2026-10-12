@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .bg { fill: #0a0c10; }
+    .fg { stroke: #2ee5c1; }
+    .cur { fill: #a78bfa; }
+
+    @media (prefers-color-scheme: light) {
+      .bg  { fill: #f7f9fc; }
+      .fg  { stroke: #0e9e82; }
+      .cur { fill: #7c5cf5; }
+    }
+  </style>
+
+  <rect width="64" height="64" rx="14" class="bg"/>
+
+  <!-- > chevron -->
+  <path d="M18 22 L29 32 L18 42"
+        class="fg"
+        stroke-width="6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"/>
+
+  <!-- _ cursor -->
+  <rect x="35" y="38" width="13" height="6" rx="2" class="cur"/>
+</svg>
