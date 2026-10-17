@@ -275,11 +275,12 @@ code {
   top: 0;
   left: 0;
   height: 2px;
-  width: 0%;
+  width: 100%;
   background: var(--gradient);
   z-index: 200;
-  transition: width 80ms linear;
-  will-change: width;
+  transform-origin: 0 0;
+  transform: scaleX(0);
+  will-change: transform;
 }
 
 /*=============== BUTTONS ===============*/
@@ -347,15 +348,17 @@ code {
   right: 0;
   z-index: 100;
   padding-block: 1rem;
-  transition: padding var(--transition), background var(--transition), backdrop-filter var(--transition);
+  background: var(--bg);
+  /* solid by default */
+  border-bottom: 1px solid transparent;
+  /* always present, just invisible */
+  transition: padding var(--transition), background var(--transition), border-color var(--transition);
 }
 
 .header.is-scrolled {
   padding-block: 0.6rem;
-  background: color-mix(in oklab, var(--bg) 75%, transparent);
-  backdrop-filter: saturate(160%) blur(14px);
-  -webkit-backdrop-filter: saturate(160%) blur(14px);
-  border-bottom: 1px solid var(--border);
+  border-bottom-color: var(--border);
+  box-shadow: 0 4px 20px -8px hsl(220 40% 10% / 0.06);
 }
 
 .nav {
@@ -425,19 +428,22 @@ code {
   display: grid;
   place-items: center;
   border-radius: var(--radius-full);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-strong);
   background: var(--surface);
   color: var(--fg);
-  transition: border-color var(--transition), color var(--transition), transform var(--transition);
+  box-shadow: 0 1px 2px hsl(220 40% 10% / 0.06);
+  transition: border-color var(--transition), color var(--transition), transform var(--transition), background var(--transition);
 }
 
 .theme-toggle:hover,
 .nav__toggle:hover {
   border-color: var(--brand);
   color: var(--brand);
+  background: var(--surface-2);
 }
 
-.theme-toggle:active {
+.theme-toggle:active,
+.nav__toggle:active {
   transform: scale(0.95);
 }
 
@@ -457,6 +463,10 @@ code {
 
 .dark-theme .theme-toggle .icon--sun {
   display: none;
+}
+
+.dark-theme .header.is-scrolled {
+  box-shadow: 0 4px 20px -8px hsl(0 0% 0% / 0.4);
 }
 
 .nav__toggle {

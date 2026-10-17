@@ -67,7 +67,8 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
     header?.classList.toggle('is-scrolled', y > 20);
     toTop?.classList.toggle('is-visible', y > 600);
-    if (progress) progress.style.width = max > 0 ? `${(y / max) * 100}%` : '0%';
+    //if (progress) progress.style.width = max > 0 ? `${(y / max) * 100}%` : '0%';
+    if (progress) progress.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
 
     ticking = false;
   };
