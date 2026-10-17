@@ -293,6 +293,12 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   const message = $('#contact-message');
   const submit = $('#contact-submit');
 
+  /* ---- NEW: favicon helper ---- */
+  const setFavicon = (href) => {
+    let link = document.querySelector('link[rel="icon"]');
+    if (link) link.href = href;
+  };
+
   const setMessage = (text, kind = '') => {
     message.textContent = text;
     message.classList.toggle('is-error', kind === 'error');
@@ -316,6 +322,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
     submit.disabled = true;
     setMessage('Sending…');
+    setFavicon('./assets/img/favicon-loading.svg');
 
     try {
       await emailjs.sendForm('service_qvyv3uu', 'template_zntgsnq', form, '1CIT1HnmTY3lXPXe0');
@@ -323,9 +330,11 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
       form.reset();
       [name, email, project].forEach((f) => f.setAttribute('aria-invalid', 'false'));
       setTimeout(() => setMessage(''), 6000);
+      setFavicon('./assets/img/favicon.svg');
     } catch (err) {
       console.error('EmailJS error:', err);
       setMessage('Something went wrong. Try emailing me directly.', 'error');
+      setFavicon('./assets/img/favicon.svg');
     } finally {
       submit.disabled = false;
     }
